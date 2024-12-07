@@ -1,0 +1,828 @@
+{
+    "Id": "226b46d592c44fddbccd0557f3d0b51c",
+    "Recognition Status": "Success",
+    "Text Analysis": {
+        "Text": "Advertisement is very good. Maybe I translated it into me, to me and maybe I don't know, Unconsciously I want to buy the product they advertise.",
+        "Duration (ms)": 145000000,
+        "Confidence": 0.8275869
+    },
+    "Pronunciation Assessment": {
+        "Scores": {
+            "AccuracyScore": 89.0,
+            "FluencyScore": 72.0,
+            "ProsodyScore": 75.1,
+            "CompletenessScore": 100.0,
+            "PronScore": 76.0
+        }
+    },
+    "Detailed Word Analysis": [
+        {
+            "Word": "advertisement",
+            "Offset (ms)": 17300000,
+            "Duration (ms)": 8700000,
+            "Accuracy Score": 76.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 66.0,
+                    "Offset (ms)": 17300000,
+                    "Duration (ms)": 1300000
+                },
+                {
+                    "Phoneme": "d",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 18700000,
+                    "Duration (ms)": 400000
+                },
+                {
+                    "Phoneme": "v",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 19200000,
+                    "Duration (ms)": 600000
+                },
+                {
+                    "Phoneme": "er",
+                    "Accuracy Score": 72.0,
+                    "Offset (ms)": 19900000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "r",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 20700000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 21300000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "ih",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 21900000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "s",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 22500000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "m",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 23300000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 50.0,
+                    "Offset (ms)": 24100000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 65.0,
+                    "Offset (ms)": 24700000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 25100000,
+                    "Duration (ms)": 900000
+                }
+            ]
+        },
+        {
+            "Word": "is",
+            "Offset (ms)": 26100000,
+            "Duration (ms)": 1900000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ih",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 26100000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "z",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 26900000,
+                    "Duration (ms)": 1100000
+                }
+            ]
+        },
+        {
+            "Word": "very",
+            "Offset (ms)": 28100000,
+            "Duration (ms)": 2900000,
+            "Accuracy Score": 98.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "v",
+                    "Accuracy Score": 99.0,
+                    "Offset (ms)": 28100000,
+                    "Duration (ms)": 900000
+                },
+                {
+                    "Phoneme": "eh",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 29100000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "r",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 29700000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "iy",
+                    "Accuracy Score": 91.0,
+                    "Offset (ms)": 30500000,
+                    "Duration (ms)": 500000
+                }
+            ]
+        },
+        {
+            "Word": "good",
+            "Offset (ms)": 31100000,
+            "Duration (ms)": 4600000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "g",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 31100000,
+                    "Duration (ms)": 1100000
+                },
+                {
+                    "Phoneme": "uw",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 32300000,
+                    "Duration (ms)": 1400000
+                },
+                {
+                    "Phoneme": "d",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 33800000,
+                    "Duration (ms)": 1900000
+                }
+            ]
+        },
+        {
+            "Word": "maybe",
+            "Offset (ms)": 39300000,
+            "Duration (ms)": 7300000,
+            "Accuracy Score": 92.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "m",
+                    "Accuracy Score": 62.0,
+                    "Offset (ms)": 39300000,
+                    "Duration (ms)": 1700000
+                },
+                {
+                    "Phoneme": "ey",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 41100000,
+                    "Duration (ms)": 1500000
+                },
+                {
+                    "Phoneme": "b",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 42700000,
+                    "Duration (ms)": 900000
+                },
+                {
+                    "Phoneme": "iy",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 43700000,
+                    "Duration (ms)": 2900000
+                }
+            ]
+        },
+        {
+            "Word": "i",
+            "Offset (ms)": 46700000,
+            "Duration (ms)": 4300000,
+            "Accuracy Score": 92.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ay",
+                    "Accuracy Score": 92.0,
+                    "Offset (ms)": 46700000,
+                    "Duration (ms)": 4300000
+                }
+            ]
+        },
+        {
+            "Word": "translated",
+            "Offset (ms)": 73800000,
+            "Duration (ms)": 6600000,
+            "Accuracy Score": 56.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 63.0,
+                    "Offset (ms)": 73800000,
+                    "Duration (ms)": 1400000
+                },
+                {
+                    "Phoneme": "r",
+                    "Accuracy Score": 41.0,
+                    "Offset (ms)": 75300000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "ae",
+                    "Accuracy Score": 21.0,
+                    "Offset (ms)": 75700000,
+                    "Duration (ms)": 200000
+                },
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 76000000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "z",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 76400000,
+                    "Duration (ms)": 600000
+                },
+                {
+                    "Phoneme": "l",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 77100000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "ey",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 77900000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 78500000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "ih",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 79300000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "d",
+                    "Accuracy Score": 62.0,
+                    "Offset (ms)": 79700000,
+                    "Duration (ms)": 700000
+                }
+            ]
+        },
+        {
+            "Word": "it",
+            "Offset (ms)": 80500000,
+            "Duration (ms)": 2000000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ih",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 80500000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 81300000,
+                    "Duration (ms)": 1200000
+                }
+            ]
+        },
+        {
+            "Word": "into",
+            "Offset (ms)": 82800000,
+            "Duration (ms)": 2600000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ih",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 82800000,
+                    "Duration (ms)": 600000
+                },
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 83500000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 84100000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 84900000,
+                    "Duration (ms)": 500000
+                }
+            ]
+        },
+        {
+            "Word": "me",
+            "Offset (ms)": 85500000,
+            "Duration (ms)": 3700000,
+            "Accuracy Score": 98.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "m",
+                    "Accuracy Score": 94.0,
+                    "Offset (ms)": 85500000,
+                    "Duration (ms)": 1100000
+                },
+                {
+                    "Phoneme": "iy",
+                    "Accuracy Score": 67.0,
+                    "Offset (ms)": 86700000,
+                    "Duration (ms)": 2500000
+                }
+            ]
+        },
+        {
+            "Word": "to",
+            "Offset (ms)": 89900000,
+            "Duration (ms)": 2900000,
+            "Accuracy Score": 98.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 80.0,
+                    "Offset (ms)": 89900000,
+                    "Duration (ms)": 2300000
+                },
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 90.0,
+                    "Offset (ms)": 92300000,
+                    "Duration (ms)": 500000
+                }
+            ]
+        },
+        {
+            "Word": "me",
+            "Offset (ms)": 92900000,
+            "Duration (ms)": 2300000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "m",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 92900000,
+                    "Duration (ms)": 900000
+                },
+                {
+                    "Phoneme": "iy",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 93900000,
+                    "Duration (ms)": 1300000
+                }
+            ]
+        },
+        {
+            "Word": "and",
+            "Offset (ms)": 95300000,
+            "Duration (ms)": 4100000,
+            "Accuracy Score": 98.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ae",
+                    "Accuracy Score": 91.0,
+                    "Offset (ms)": 95300000,
+                    "Duration (ms)": 1700000
+                },
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 69.0,
+                    "Offset (ms)": 97100000,
+                    "Duration (ms)": 1100000
+                },
+                {
+                    "Phoneme": "d",
+                    "Accuracy Score": 64.0,
+                    "Offset (ms)": 98300000,
+                    "Duration (ms)": 1100000
+                }
+            ]
+        },
+        {
+            "Word": "maybe",
+            "Offset (ms)": 99500000,
+            "Duration (ms)": 6100000,
+            "Accuracy Score": 96.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "m",
+                    "Accuracy Score": 82.0,
+                    "Offset (ms)": 99500000,
+                    "Duration (ms)": 900000
+                },
+                {
+                    "Phoneme": "ey",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 100500000,
+                    "Duration (ms)": 1300000
+                },
+                {
+                    "Phoneme": "b",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 101900000,
+                    "Duration (ms)": 800000
+                },
+                {
+                    "Phoneme": "iy",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 102800000,
+                    "Duration (ms)": 2800000
+                }
+            ]
+        },
+        {
+            "Word": "i",
+            "Offset (ms)": 105700000,
+            "Duration (ms)": 3300000,
+            "Accuracy Score": 94.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ay",
+                    "Accuracy Score": 94.0,
+                    "Offset (ms)": 105700000,
+                    "Duration (ms)": 3300000
+                }
+            ]
+        },
+        {
+            "Word": "don't",
+            "Offset (ms)": 115000000,
+            "Duration (ms)": 1500000,
+            "Accuracy Score": 34.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "d",
+                    "Accuracy Score": 0.0,
+                    "Offset (ms)": 115000000,
+                    "Duration (ms)": 200000
+                },
+                {
+                    "Phoneme": "ow",
+                    "Accuracy Score": 42.0,
+                    "Offset (ms)": 115300000,
+                    "Duration (ms)": 400000
+                },
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 50.0,
+                    "Offset (ms)": 115800000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 44.0,
+                    "Offset (ms)": 116200000,
+                    "Duration (ms)": 300000
+                }
+            ]
+        },
+        {
+            "Word": "know",
+            "Offset (ms)": 116600000,
+            "Duration (ms)": 1100000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 116600000,
+                    "Duration (ms)": 400000
+                },
+                {
+                    "Phoneme": "ow",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 117100000,
+                    "Duration (ms)": 600000
+                }
+            ]
+        },
+        {
+            "Word": "unconsciously",
+            "Offset (ms)": 117800000,
+            "Duration (ms)": 8400000,
+            "Accuracy Score": 56.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ah",
+                    "Accuracy Score": 35.0,
+                    "Offset (ms)": 117800000,
+                    "Duration (ms)": 400000
+                },
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 54.0,
+                    "Offset (ms)": 118300000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "k",
+                    "Accuracy Score": 48.0,
+                    "Offset (ms)": 118900000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "aa",
+                    "Accuracy Score": 39.0,
+                    "Offset (ms)": 119700000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 58.0,
+                    "Offset (ms)": 120100000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "sh",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 120900000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 121500000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "s",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 122100000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "l",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 122900000,
+                    "Duration (ms)": 900000
+                },
+                {
+                    "Phoneme": "iy",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 123900000,
+                    "Duration (ms)": 2300000
+                }
+            ]
+        },
+        {
+            "Word": "i",
+            "Offset (ms)": 126300000,
+            "Duration (ms)": 2300000,
+            "Accuracy Score": 92.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ay",
+                    "Accuracy Score": 92.0,
+                    "Offset (ms)": 126300000,
+                    "Duration (ms)": 2300000
+                }
+            ]
+        },
+        {
+            "Word": "want",
+            "Offset (ms)": 130900000,
+            "Duration (ms)": 4700000,
+            "Accuracy Score": 94.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "w",
+                    "Accuracy Score": 59.0,
+                    "Offset (ms)": 130900000,
+                    "Duration (ms)": 2700000
+                },
+                {
+                    "Phoneme": "aa",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 133700000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "n",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 134100000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 134900000,
+                    "Duration (ms)": 700000
+                }
+            ]
+        },
+        {
+            "Word": "to",
+            "Offset (ms)": 135700000,
+            "Duration (ms)": 1100000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 135700000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 136300000,
+                    "Duration (ms)": 500000
+                }
+            ]
+        },
+        {
+            "Word": "buy",
+            "Offset (ms)": 136900000,
+            "Duration (ms)": 3100000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "b",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 136900000,
+                    "Duration (ms)": 900000
+                },
+                {
+                    "Phoneme": "ay",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 137900000,
+                    "Duration (ms)": 2100000
+                }
+            ]
+        },
+        {
+            "Word": "the",
+            "Offset (ms)": 140100000,
+            "Duration (ms)": 1300000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "dh",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 140100000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 140700000,
+                    "Duration (ms)": 700000
+                }
+            ]
+        },
+        {
+            "Word": "product",
+            "Offset (ms)": 141500000,
+            "Duration (ms)": 5900000,
+            "Accuracy Score": 100.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "p",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 141500000,
+                    "Duration (ms)": 1100000
+                },
+                {
+                    "Phoneme": "r",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 142700000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "aa",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 143300000,
+                    "Duration (ms)": 900000
+                },
+                {
+                    "Phoneme": "d",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 144300000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 145100000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "k",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 145500000,
+                    "Duration (ms)": 700000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 100.0,
+                    "Offset (ms)": 146300000,
+                    "Duration (ms)": 1100000
+                }
+            ]
+        },
+        {
+            "Word": "they",
+            "Offset (ms)": 147500000,
+            "Duration (ms)": 3700000,
+            "Accuracy Score": 92.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "dh",
+                    "Accuracy Score": 80.0,
+                    "Offset (ms)": 147500000,
+                    "Duration (ms)": 300000
+                },
+                {
+                    "Phoneme": "ey",
+                    "Accuracy Score": 55.0,
+                    "Offset (ms)": 147900000,
+                    "Duration (ms)": 3300000
+                }
+            ]
+        },
+        {
+            "Word": "advertise",
+            "Offset (ms)": 156500000,
+            "Duration (ms)": 5800000,
+            "Accuracy Score": 42.0,
+            "Phonemes": [
+                {
+                    "Phoneme": "ae",
+                    "Accuracy Score": 30.0,
+                    "Offset (ms)": 156500000,
+                    "Duration (ms)": 900000
+                },
+                {
+                    "Phoneme": "d",
+                    "Accuracy Score": 48.0,
+                    "Offset (ms)": 157500000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "v",
+                    "Accuracy Score": 62.0,
+                    "Offset (ms)": 158100000,
+                    "Duration (ms)": 500000
+                },
+                {
+                    "Phoneme": "ax",
+                    "Accuracy Score": 29.0,
+                    "Offset (ms)": 158700000,
+                    "Duration (ms)": 200000
+                },
+                {
+                    "Phoneme": "r",
+                    "Accuracy Score": 50.0,
+                    "Offset (ms)": 159000000,
+                    "Duration (ms)": 400000
+                },
+                {
+                    "Phoneme": "t",
+                    "Accuracy Score": 50.0,
+                    "Offset (ms)": 159500000,
+                    "Duration (ms)": 1100000
+                },
+                {
+                    "Phoneme": "ay",
+                    "Accuracy Score": 44.0,
+                    "Offset (ms)": 160700000,
+                    "Duration (ms)": 1300000
+                },
+                {
+                    "Phoneme": "z",
+                    "Accuracy Score": 23.0,
+                    "Offset (ms)": 162100000,
+                    "Duration (ms)": 200000
+                }
+            ]
+        }
+    ]
+}
