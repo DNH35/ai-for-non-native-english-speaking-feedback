@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pronunciation Feedback</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 10px; }
+        .feedback { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>AI Pronunciation Feedback</h1>
+    <button id="start-session">Start Speaking Session</button>
+    <div id="question-container" style="display: none;">
+        <p id="question-text"></p>
+        <button id="record-speech">Record Your Answer</button>
+    </div>
+    <div class="feedback" id="feedback-container" style="display: none;">
+        <h3>Feedback</h3>
+        <p id="feedback-text"></p>
+    </div>
+
+    <script>
+        let questions = [];
+        let currentQuestionIndex = 0;
+
+        document.getElementById('start-session').addEventListener('click', async () => {
+            const response = await fetch('/generate-questions', { method: 'POST' });
+            questions = await response.json();
+            document.getElementById('question-container').style.display = 'block';
+            document.getElementById('question-text').textContent = questions[currentQuestionIndex];
+        });
+
+        document.getElementById('record-speech').addEventListener('click', async () => {
+            const response = await fetch('/pronunciation_assessment_from_microphone', { method: 'POST' });
+            const feedback = await response.json();
+            document.getElementById('feedback-container').style.display = 'block';
+            document.getElementById('feedback-text').textContent = feedback.error || JSON.stringify(feedback, null, 2);
+
+            // Move to the next question or end the session
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                document.getElementById('question-text').textContent = questions[currentQuestionIndex];
+            } else {
+                alert('Session complete!');
+                document.getElementById('question-container').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

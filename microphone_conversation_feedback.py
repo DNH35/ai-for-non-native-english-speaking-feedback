@@ -8,22 +8,26 @@ from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
-
+from flask import Flask, request, jsonify
 import fire 
+
+
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Get API keys and configuration
 SPEECH_KEY = os.getenv('SPEECH_KEY')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 speech_key, service_region = SPEECH_KEY, "westus"
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
-speech_config.set_property(speechsdk.PropertyId.SpeechServiceConnection_InitialSilenceTimeoutMs, "3000")
+
+
 
 embedding_model = OpenAIEmbeddings(api_key=OPENAI_API_KEY, model="text-embedding-3-large")
 
-def pronunciation_assessment_from_microphone(criteria, vectorstore_path):
+def pronunciation_assessment_from_microphone(criteria, previous_feedback="", vectorstore_path = ""):
     """Real-time pronunciation assessment with microphone input."""
     # Create microphone configuration
     pronunciation_config = speechsdk.PronunciationAssessmentConfig(
@@ -34,6 +38,9 @@ def pronunciation_assessment_from_microphone(criteria, vectorstore_path):
     )
     pronunciation_config.enable_prosody_assessment()
 
+    
+    speech_config.set_property(speechsdk.PropertyId.SpeechServiceConnection_InitialSilenceTimeoutMs, "3000")
+
     recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, language="en-US")
     pronunciation_config.apply_to(recognizer)
     
@@ -41,14 +48,16 @@ def pronunciation_assessment_from_microphone(criteria, vectorstore_path):
 
     result = recognizer.recognize_once_async().get()
 
+    # print("RESULT REASON:")
+
     if result.reason == speechsdk.ResultReason.RecognizedSpeech:
         print(f"Recognized Speech: {result.text}")
         print("Pronunciation Assessment Results:")
         pronunciation_result_json = result.properties.get(speechsdk.PropertyId.SpeechServiceResponse_JsonResult)
         assessment_data = parse_assessment_result_json(pronunciation_result_json)
         vectorstore = FAISS.load_local(vectorstore_path, embeddings=embedding_model, allow_dangerous_deserialization=True)
-        feedback = give_feedbacks(parsed_data=assessment_data, llm=setup_llm(), criteria=criteria, vectorstore=vectorstore)
-        print(feedback)
+        feedback = give_feedbacks(parsed_data=assessment_data, llm=setup_llm(max_tokens=1024*4), criteria=criteria, prev_feedback=previous_feedback, vectorstore=vectorstore)
+        return feedback
 
     elif result.reason == speechsdk.ResultReason.NoMatch:
         print("No speech was recognized. Please try again.")
@@ -57,6 +66,8 @@ def pronunciation_assessment_from_microphone(criteria, vectorstore_path):
         cancellation_details = result.cancellation_details
         if cancellation_details.reason == speechsdk.CancellationReason.Error:
             print(f"Error details: {cancellation_details.error_details}")
+
+    return None
 
 
 def parse_assessment_result_json(pronunciation_assessment_result_json):
@@ -95,58 +106,7 @@ def parse_assessment_result_json(pronunciation_assessment_result_json):
     
     return parsed_data
 
-# def give_feedbacks(llm, parsed_data):
-#     """Generates feedback using the LLM model."""
-#     # system_prompt = (
-#     #     "You are a knowledgeable assistant helping non-native English speakers improve their pronunciation. "
-#     #     "Use the provided criteria to evaluate the user's performance and offer constructive feedback."
-#     #     "{criteria}"
-#     # )
-
-#     # human_prompt = (
-#     #     "Here is the data from a speaking session. Provide feedback on pronunciation, fluency, coherence, lexical resource, "
-#     #     "grammatical range, and accuracy. Include suggestions for improvement and provide an overall score:"
-#     #     "{parsed_data}"
-#     # )
-#     # prompt = ChatPromptTemplate.from_messages([
-#     #     ("system", system_prompt),
-#     #     ("human", human_prompt),
-#     # ])
-#     # formatted_prompt = prompt.format(criteria=criteria, parsed_data=parsed_data)
-#     # return llm.invoke(formatted_prompt).content
-#     system_prompt = (
-#         "You are a knowledgeable, helpful assistant to help non-native English speakers to improve their English-speaking skills"
-#         "Use the criteria to grade the pronunciation of the user's speech. Provide feedback on the user's pronunciation, fluency, coherence, lexical resource, grammatical range and accuracy."
-#         "{criteria}"
-#         # "the question. If you don't know the answer, say that you "
-#         # "don't know. Use three sentences maximum and keep the "
-#         # "answer concise."
-#         # "\n\n"
-#         # "{context}"
-#             )
-
-#     human_prompt = (
-#         "Use the following data extracted from a speaking session to provide feedback on the user's pronunciation, fluency, coherence, lexical resource, grammatical range and accuracy. Point out specific instance where the users can lose points according to the critieria and how they can improve. Give the overall score according to the criteria provided in the system prompt."
-#         "{parsed_data}"
-#         # "the question. If you don't know the answer, say that you "
-#         # "don't know. Use three sentences maximum and keep the "
-#         # "answer concise."
-#         # "\n\n"
-#         # "{context}"
-#             )
-#     prompt = ChatPromptTemplate.from_messages(
-#         [
-#             ("system", system_prompt),
-#             ("human", human_prompt),
-#         ]
-#     )
-
-#     formatted_prompt = prompt.format(criteria=criteria, parsed_data=parsed_data)
-#     feedback_response = llm.invoke(formatted_prompt).content
-
-#     return feedback_response
-
-def give_feedbacks(parsed_data, llm, criteria, vectorstore):
+def give_feedbacks(parsed_data, llm, criteria, prev_feedback,  vectorstore):
     '''
     Query the retrieval chain with the given query and vector store
 
@@ -160,27 +120,28 @@ def give_feedbacks(parsed_data, llm, criteria, vectorstore):
     similar_embeddings = vectorstore.similarity_search(criteria)
     similar_embeddings = FAISS.from_documents(documents=similar_embeddings, embedding=embedding_model)
 
+    
+
     #retriever = vectorstore.as_retriever()
     retriever = similar_embeddings.as_retriever()
     system_prompt = (
         "You are a knowledgeable, helpful assistant to help non-native English speakers to improve their English-speaking skills\n"
         "Use the exam name to grade the pronunciation of the user's speech according to the exam's criteria in the vector database, provide feedback on the user's pronunciation, fluency, coherence, lexical resource, grammatical range and accuracy. Give score for each of the categories and the overall score according to the exam's criteria."
-        #f"Here is the exam name: {criteria}"
-        # "the question. If you don't know the answer, say that you "
-        # "don't know. Use three sentences maximum and keep the "
-        # "answer concise."
-        # "\n\n"
         )
-    human_prompt = (
-            f"{parsed_data}"
-            f"Use the provided data extracted from a speaking session to provide feedback on the user's pronunciation, fluency, coherence, lexical resource, grammatical range and accuracy. The user is taking this exam {criteria}. Given the exam provided, use the exam's rubric and point out specific instance where the users can lose points according to the exam's critieria from the system prompt and how they can improve. Do not mention the accuracy score from the provided data, but convert the accuracy score to the score from the exam's rubric. Give the overall score as well as the score for each section (user's pronunciation, fluency, coherence, lexical resource, grammatical range and accuracy) according to the criteria provided in the system prompt."
-            
-            # "the question. If you don't know the answer, say that you "
-            # "don't know. Use three sentences maximum and keep the "
-            # "answer concise."
-            # "\n\n"
-            # "{context}"
-                )
+    
+    human_prompt = ""
+    
+    if prev_feedback == "":
+        human_prompt = (
+                f"{parsed_data}"
+                f"Use the provided data extracted from a speaking session to provide feedback on the user's pronunciation, fluency, coherence, lexical resource, grammatical range and accuracy. The user is taking this exam {criteria}. Given the exam provided, use the exam's rubric and point out specific instance where the users can lose points according to the exam's critieria from the system prompt and how they can improve. Do not mention the accuracy score from the provided data, but convert the accuracy score to the score from the exam's rubric. Give the overall score as well as the score for each section (user's pronunciation, fluency, coherence, lexical resource, grammatical range and accuracy) according to the criteria provided in the system prompt."
+                    )
+        
+    else:
+        human_prompt = (
+                f"{parsed_data}"
+                f"Given the previous feedback and score that the user already has, update the score and feedback given the new data extracted from a speaking session. The user is taking this exam {criteria}. Use the exam's rubric and point out specific instance where the users can lose points according to the exam's critieria from the system prompt and how they can improve. Do not mention the accuracy score from the provided data, but convert the accuracy score to the score from the exam's rubric. Give the overall score as well as the score for each section (user's pronunciation, fluency, coherence, lexical resource, grammatical range and accuracy) according to the criteria provided in the system prompt."
+        )
     prompt = ChatPromptTemplate.from_messages(
         [
             ("system", "{context}"),
@@ -197,18 +158,60 @@ def give_feedbacks(parsed_data, llm, criteria, vectorstore):
     # sources = set([doc.metadata.get('source') for doc in results['context']])
     return results['answer']
 
-def setup_llm(model="gpt-4"):
+def setup_llm(model="gpt-4", temperature=0.2, top_p=0.7, max_tokens=1024):
     """Initializes the LLM for feedback generation."""
     return ChatOpenAI(
         model=model,
         api_key=OPENAI_API_KEY,
-        temperature=0.2,
-        top_p=0.7,
-        max_tokens=1024,
+        temperature=temperature,
+        top_p=top_p,
+        max_tokens=max_tokens,
     )
 
-def main(criteria, vectorstore_path):
-    pronunciation_assessment_from_microphone(criteria, vectorstore_path)
+def generate_questions(sample_questions, model):
+    system_prompt = "You are an examiner for an english international exam that has a lot of knowledge in a wide range of topics. You have experience working with non-native speakers. You are asked to come up with new questions and topics for the next exam."
+    human_prompt = f"""Given the following questions and topics, come up with one more unique unique topic and ask a list of conversational questions relating to that topic for the next exam. Here are the questions: \n\n{sample_questions}
+    Your response should be in the following format:
+    Topic: [Your topic here]
+    Questions: [Your list of questions here]
+    """
+
+    prompt = [
+            ("system", system_prompt),
+            ("human", human_prompt),
+        ]
     
+    llm = setup_llm(model, temperature=0.5)
+
+    question_responses = llm.invoke(prompt).content
+    questions_responses_arr = question_responses.split("\n")[3:] #hard coded
+
+    return questions_responses_arr
+
+def generate_audio_for_questions(question):
+    speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
+    speech_synthesizer.speak_text_async(question).get()
+
+def main(criteria="IELTS", sample_questions_path="/Users/duynguyen/ai-for-non-native-english-speaking-feedback/data/ietls_speaking_questions.txt", vectorstore_path="/Users/duynguyen/ai-for-non-native-english-speaking-feedback/db_faiss"):
+    question_file_content = open(sample_questions_path, 'r')
+
+    generated_questions_arr = generate_questions(question_file_content.read(), "gpt-4o")
+    feedback_lst = []
+    prev_feedback = ""
+    feedback = ""
+    for i, question in enumerate(generated_questions_arr):
+        print("QUESTION: ", question)
+        generate_audio_for_questions(question)
+        feedback = pronunciation_assessment_from_microphone(criteria, prev_feedback, vectorstore_path)
+        print(f"FEEDBACK FOR QUESTION {i + 1}: {feedback}")
+        feedback_lst.append(feedback)
+        prev_feedback = feedback
+
+
+    
+        
 if __name__ == "__main__":
     fire.Fire(main)
+
+
+    
