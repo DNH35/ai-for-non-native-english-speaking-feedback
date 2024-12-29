@@ -3,51 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Pronunciation Feedback</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        button { padding: 10px 20px; font-size: 16px; margin: 10px; }
-        .feedback { margin-top: 20px; }
-    </style>
+    <title>AI English Conversation Practice</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <h1>AI Pronunciation Feedback</h1>
-    <button id="start-session">Start Speaking Session</button>
-    <div id="question-container" style="display: none;">
-        <p id="question-text"></p>
-        <button id="record-speech">Record Your Answer</button>
-    </div>
-    <div class="feedback" id="feedback-container" style="display: none;">
-        <h3>Feedback</h3>
-        <p id="feedback-text"></p>
+    <h1>AI English Conversation Practice</h1>
+
+    <label for="criteria">Enter Exam Criteria (e.g., IELTS, TOEFL):</label>
+    <input type="text" id="criteria" placeholder="Enter Exam Criteria" />
+    
+    <button onclick="startConversation()">Start Conversation</button>
+    <div id="conversationArea" style="display:none;">
+        <h2>Current Question:</h2>
+        <p id="currentQuestion"></p>
+        <!-- <audio id="questionAudio" controls></audio> -->
+        <button onclick="startRecording()">Start Speaking</button>
+        <button onclick="getFeedback()">Get Feedback</button>
+        <h3>Feedback:</h3>
+        <p id="feedback"></p>
+        <button onclick="nextQuestion()">Next Question</button>
     </div>
 
     <script>
         let questions = [];
-        let currentQuestionIndex = 0;
+        let currentQuestionIndex = 0; 
+        let userCriteria = "";
+        let prevFeedback = "";
 
-        document.getElementById('start-session').addEventListener('click', async () => {
-            const response = await fetch('/generate-questions', { method: 'POST' });
-            questions = await response.json();
-            document.getElementById('question-container').style.display = 'block';
-            document.getElementById('question-text').textContent = questions[currentQuestionIndex];
-        });
+        async function startConversation() {
+            criteria = document.getElementById('criteria').value;
 
-        document.getElementById('record-speech').addEventListener('click', async () => {
-            const response = await fetch('/pronunciation_assessment_from_microphone', { method: 'POST' });
-            const feedback = await response.json();
-            document.getElementById('feedback-container').style.display = 'block';
-            document.getElementById('feedback-text').textContent = feedback.error || JSON.stringify(feedback, null, 2);
-
-            // Move to the next question or end the session
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                document.getElementById('question-text').textContent = questions[currentQuestionIndex];
-            } else {
-                alert('Session complete!');
-                document.getElementById('question-container').style.display = 'none';
+            if (!criteria) {
+                alert('Please enter exam criteria!');
+                return;
             }
-        });
+
+            const response = await axios.post('/start_conversation', {
+                sample_questions_path: '/Users/duynguyen/ai-for-non-native-english-speaking-feedback/data/ietls_speaking_questions.txt',
+                model: 'gpt-4o-mini'
+            });
+            questions = response.data.questions;
+            currentQuestionIndex = 0;
+            document.getElementById('currentQuestion').textContent = questions[currentQuestionIndex]
+            document.getElementById('conversationArea').style.display = 'block';
+            nextQuestion();
+        }
+
+        async function nextQuestion() {
+            document.getElementById('feedback').innerHTML = "";
+            if (currentQuestionIndex < questions.length) {
+                document.getElementById('currentQuestion').textContent = questions[currentQuestionIndex]
+                const response = await axios.post('/next_question', {
+                    question: questions[currentQuestionIndex],
+                    criteria: criteria,
+                });
+                
+                // document.getElementById('questionAudio').src = response.data.audio_url;
+            currentQuestionIndex++;
+            } else {
+                alert('Conversation finished!');
+            }
+        }
+
+        let mediaRecorder;
+        let user_audio;
+        let audioChunks = [];
+
+        async function startRecording() {
+            // const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            // mediaRecorder = new MediaRecorder(stream);
+            // mediaRecorder.ondataavailable = event => {
+            //     audioChunks.push(event.data);
+            // };
+            // mediaRecorder.start();
+
+            const response = await axios.post('/record_users')
+            user_audio = response.data.result;
+        }
+
+        async function getFeedback() {
+            const response = await axios.post('/assess_pronunciation', {
+                prev_feedback: prevFeedback,
+                user_audio: user_audio,
+                vectorstore_path: '/Users/duynguyen/ai-for-non-native-english-speaking-feedback/db_faiss'
+            });
+            document.getElementById('feedback').innerHTML = response.data.feedback;
+            // document.getElementById('feedback').innerHTML = response.data.feedback;
+            prevFeedback = response.data.feedback;
+            audioChunks = [];
+        }
     </script>
 </body>
 </html>
